@@ -1,0 +1,272 @@
+---
+title: "Modelo Rasch"
+output: html_Modelo_Rasch
+---
+
+
+Para correr una linea, utilizar *Ctrl+Shift+Enter*
+
+Para insertar una nueva linea de codigo, utilizar *Ctrl+Alt+I*
+
+
+```{r}
+##Iniciar función paquetes
+ipak <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg, dependencies = TRUE)
+  sapply(pkg, require, character.only = TRUE)
+}
+```
+
+
+```{r}
+##Asignar paquetes
+packages <- c("parameters","apa","haven","ggplot2","ggpubr","gridExtra","apaTables", "reshape", "GPArotation", "mvtnorm", "psych", "psychometric", "lavaan", "nFactors", "semPlot", "lavaan", "MVN", "semTools", "eRm", "ltm", "difR")
+
+```
+
+
+```{r}
+##Abrir paquetes
+ipak(packages)
+```
+
+
+```{r}
+##Abrir archivo de trabajo
+R_Calificada
+```
+
+
+```{r}
+datos = na.omit(R_Calificada)
+```
+
+
+```{r}
+##Asignar los items del MODELO 1
+dat_1 <- datos[, 1:44]
+```
+
+
+```{r}
+##Construccion del modelo Rasch
+res_rm_1 <- RM(dat_1)
+```
+
+
+```{r}
+##Resumen corto del modelo
+res_rm_1
+```
+
+```{r}
+##Resumen largo del modelo
+summary(res_rm_1)
+```
+
+
+```{r}
+##Dificultad de los items
+betas <- -coef(res_rm_1)
+round(sort(betas), 2)
+```
+
+```{r}
+##Discriminacion fija en 1
+pers.rasch <- person.parameter(res_rm_1)
+```
+
+
+```{r}
+pers.rasch
+```
+
+
+
+```{r}
+IC(pers.rasch)
+```
+
+
+```{r}
+##Bondad de ajuste
+Bondad1 <- gofIRT(pers.rasch)
+```
+
+
+```{r}
+## Resumen corto de la bondad de ajuste
+Bondad1
+```
+
+
+```{r}
+##Resumen largo de la bondad de ajuste
+summary(Bondad1)
+```
+
+
+```{r}
+##Ahjuste de los items
+itemfit(pers.rasch)
+```
+
+
+
+###################################################################################################################
+
+
+
+```{r}
+##Asignar los items del MODELO 2
+dat_2 <- datos[, 45:88]
+```
+
+
+```{r}
+##Construccion del modelo Rasch
+res_rm_2 <- RM(dat_2)
+```
+
+
+```{r}
+##Resumen corto del modelo
+res_rm_2
+```
+
+
+```{r}
+##Resumen largo del modelo
+summary(res_rm_2)
+```
+
+
+```{r}
+##Dificultad de los items
+betas2 <- -coef(res_rm_2)
+round(sort(betas2), 2)
+```
+
+
+```{r}
+##Discriminacion fija en 1
+pers.rasch2 <- person.parameter(res_rm_2)
+```
+
+
+```{r}
+pers.rasch2
+```
+
+
+
+```{r}
+IC(pers.rasch2)
+```
+
+
+```{r}
+##Bondad de ajuste
+Bondad2 <- gofIRT(pers.rasch2)
+```
+
+
+```{r}
+## Resumen corto de la bondad de ajuste
+Bondad2
+```
+
+
+```{r}
+##Resumen largo de la bondad de ajuste
+summary(Bondad2)
+```
+
+
+```{r}
+##Ahjuste de los items
+itemfit(pers.rasch2)
+```
+
+
+
+###################################################################################################################
+
+
+
+```{r}
+##Asignar los items del MODELO 3
+dat_3 <- datos[, 89:148]
+```
+
+
+```{r}
+##Construccion del modelo Rasch
+res_rm_3 <- RM(dat_3)
+```
+
+
+```{r}
+##Resumen corto del modelo
+res_rm_3
+```
+
+
+```{r}
+##Resumen largo del modelo
+summary(res_rm_3)
+```
+
+
+```{r}
+##Dificultad de los items
+betas3 <- -coef(res_rm_3)
+round(sort(betas3), 2)
+```
+
+
+```{r}
+##Discriminacion fija en 1
+pers.rasch3 <- person.parameter(res_rm_3)
+```
+
+
+```{r}
+pers.rasch3
+```
+
+
+
+```{r}
+IC(pers.rasch3)
+```
+
+
+```{r}
+##Bondad de ajuste
+Bondad3 <- gofIRT(pers.rasch3)
+```
+
+
+```{r}
+## Resumen corto de la bondad de ajuste
+Bondad3
+```
+
+
+```{r}
+##Resumen largo de la bondad de ajuste
+summary(Bondad3)
+```
+
+
+```{r}
+##Ahjuste de los items
+itemfit(pers.rasch3)
+```
+
+Guardar la syntaxis del trabajo
+Utilizar *Ctrl+Shift+K* sobre un Chunk (linea de trabajo)
+
